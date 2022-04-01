@@ -1,4 +1,4 @@
-const contractAddress = 0xef03d5f64424533e4A8D41D50E42dD290baFA7cE;
+const contractAddress = 0xc79f45338616cF3C4e159063aB6AbAFE4ca0b5f3;
 
 const abi = [
 	{
@@ -657,11 +657,6 @@ const abi = [
 			},
 			{
 				"internalType": "string",
-				"name": "Password",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
 				"name": "Email",
 				"type": "string"
 			},
@@ -743,6 +738,19 @@ const abi = [
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "useKeys",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -760,6 +768,24 @@ const abi = [
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"name": "userRole",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
 	}
 ]
-
