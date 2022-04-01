@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.2;
 
-contract PharmaSupplyChain{
+contract SupplyChainStorage{
 
 address public AdminAddress;
     constructor(string memory _Name,
@@ -14,7 +14,7 @@ address public AdminAddress;
        UserDetail.Name =_Name;
         UserDetail.ContactNo = _ContactNo;
         UserDetail.UserName = _UserName;
-         UserDetail.Password = _UserPassword;
+         
         UserDetail.Email = _Email;
         UserDetail.Role ="Admin";
         UserDetail.IsActive = true;
@@ -22,21 +22,21 @@ address public AdminAddress;
         BatchUserDetails[_UserName] = UserDetail;
         userRole[_UserName] = "Admin";
         UserNameList.push(_UserName);
+        passwords[_UserName]= _UserPassword;
         isAutherised[_UserName]= true;
                     }
     address[] public DrugKeyList;
     string[] public UserNameList;
-  mapping(string => string)  userRole;
+  mapping(string => string)  public userRole;
   mapping (address => string) nextOwner;
   mapping(string => bool) isAutherised;
-
+    mapping(string => string) passwords;
 
     struct User{
         string Name;
         uint32 ContactNo;
         bool IsActive;
         string UserName;
-        string Password;
         string Email;
         string Role;
      }
@@ -137,7 +137,7 @@ address public AdminAddress;
         UserDetail.Name =_Name;
         UserDetail.ContactNo = _ContactNo;
         UserDetail.UserName = _UserName;
-         UserDetail.Password = _UserPassword;
+         
         UserDetail.Email = _Email;
         UserDetail.Role =_Role;
         UserDetail.IsActive = true;
@@ -145,6 +145,7 @@ address public AdminAddress;
         BatchUserDetails[_UserName] = UserDetail;
         userRole[_UserName] = _Role;
         UserNameList.push(_UserName);
+         passwords[_UserName]= _UserPassword;
         isAutherised[_UserName]= true;
 
         return true;
@@ -342,10 +343,10 @@ function importToPharmacy(address _SerialNumber,
 }
     
 
-
-// function getUserDetails(string memory _Username,string memory ThisUser) ValidUser(ThisUser)external view returns(User memory){
-//     return BatchUserDetails[_Username];
-// }
+function useKeys() external view returns(string[] memory){
+    return UserNameList;
+}
+ 
 
 // function getDrugDetails(address  _SerialNumber,string memory ThisUser) ValidUser(ThisUser) external view returns(Drug memory){
 //     return BatchDrugDetails[_SerialNumber];
@@ -404,13 +405,12 @@ function isBad(address _SerialNumber,int8 Temparature) internal returns(bool){
      }
 
        function Authenticate(string memory _username,string memory _password) public view returns(bool){
-       User memory user = BatchUserDetails[_username];
-      if((keccak256(abi.encodePacked(user.UserName))== keccak256(abi.encodePacked(_username)))){
-              if(keccak256(abi.encodePacked(user.Password))== keccak256(abi.encodePacked(_password))){
+           string memory password = passwords[_username];
+              if(keccak256(abi.encodePacked(password))== keccak256(abi.encodePacked(_password))){
                   return true;
               }
-       return false;
-      }
+  
+      
       return false; 
    }
  function changeAdmin(address newAdmin,string memory _UserName, string memory ThisUser) public onlyAdmin(ThisUser){
@@ -450,6 +450,7 @@ _;
 }
 
 }
+//
 
 
 
