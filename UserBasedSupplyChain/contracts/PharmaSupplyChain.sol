@@ -97,7 +97,7 @@ address public AdminAddress;
     }
 
 
-     mapping(address => Drug) public BatchDrugDetails;
+    mapping(address => Drug) public BatchDrugDetails;
     mapping(address => Manufacturer) public BatchManufactureringDetails;
     mapping(address =>distributor) public  BatchdistributorDetails;
     mapping(address =>Wholesaler) public BatchWholesalerDetails;
@@ -113,9 +113,9 @@ address public AdminAddress;
         Pharmacy PharmacyDetails;
 
 
-//   function getDrugKeyList() public view returns(address[] memory){
-//         return DrugKeyList;
-//     }
+  function getDrugKeyList() public view returns(address[] memory){
+         return DrugKeyList;
+    }
 
 
     // function getUserNameList() public view returns(string[] memory){
@@ -137,7 +137,6 @@ address public AdminAddress;
         UserDetail.Name =_Name;
         UserDetail.ContactNo = _ContactNo;
         UserDetail.UserName = _UserName;
-         
         UserDetail.Email = _Email;
         UserDetail.Role =_Role;
         UserDetail.IsActive = true;
@@ -150,6 +149,7 @@ address public AdminAddress;
 
         return true;
     }  
+
 
 
 
@@ -202,8 +202,7 @@ address public AdminAddress;
                 bool good =  isBad(_SerialNumber,_ExportingTemparature);
                 require(good,"Cannot ship the Drug, This Drug Either expired or exceeded Temparature");
           
-                DrugDetails = BatchDrugDetails[_SerialNumber]; 
-                         
+                DrugDetails = BatchDrugDetails[_SerialNumber];       
                      DrugDetails.Status = "Shipped";   
                      DrugDetails.NextOwner = _DistributorUserName;    
          ManufacturerDetails.ManufacturerUserName = _ManufacturerUserName;
@@ -450,7 +449,7 @@ _;
 }
 
 }
-//
+//0xc79f45338616cF3C4e159063aB6AbAFE4ca0b5f3
 
 
 
