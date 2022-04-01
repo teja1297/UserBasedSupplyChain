@@ -1,5 +1,5 @@
 // 0x0000000000000000000000000000000000000000
-const contractAddress = 0xc79f45338616cF3C4e159063aB6AbAFE4ca0b5f3;
+const contractAddress = 0x1D5C7a92469dfd29d7ECEa7a525C620E895576Ed;
 
 const abi = [
 	{
@@ -733,6 +733,19 @@ const abi = [
 				"internalType": "address",
 				"name": "",
 				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getDrugKeyList",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
 			}
 		],
 		"stateMutability": "view",
